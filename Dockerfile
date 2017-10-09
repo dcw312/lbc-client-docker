@@ -8,18 +8,22 @@ RUN apt-get -y install curl
 
 COPY MyConfig.pm /root/.local/share/.cpan/CPAN/MyConfig.pm
 
-RUN cpan install JSON
+RUN cpan install JSON \
+    && cpan install LWP::UserAgent \
+    && cpan install Net::SSLeay \
+    && cpan install LWP::Protocol::https \
+    && cpan install Parallel::ForkManager \
+    && cpan install Term::ReadKey
 
-#RUN useradd lbc -g users
+RUN apt-get -y install ocl-icd-libopencl1
 
-#RUN mkdir -p /home/lbc && chown lbc:users /home/lbc
+RUN groupadd lbc && useradd lbc -g lbc && mkdir -p /home/lbc && chown lbc:lbc /home/lbc
 
-#USER lbc
+USER lbc
 
-#RUN mkdir -p /home/lbc/collider
-#WORKDIR /home/lbc/collider
+COPY funds_h160.blf /home/lbc/funds_h160.blf
 
-#RUN curl -o LBC https://lbc.cryptoguru.org/static/client/LBC
+WORKDIR /home/lbc
 
-#RUN ["echo","hi"]
+RUN curl -o LBC https://lbc.cryptoguru.org/static/client/LBC && chmod +x LBC
 
