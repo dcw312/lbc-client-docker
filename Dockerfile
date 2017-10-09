@@ -13,4 +13,5 @@ WORKDIR /home/lbc/collider
 
 RUN curl -o LBC https://lbc.cryptoguru.org/static/client/LBC
 
-RUN ["perl","LBC","-h"]
+RUN ["echo","hi"]
+
