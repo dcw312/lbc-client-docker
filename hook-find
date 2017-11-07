@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+./send-it.sh
+echo "called send-it.sh"
