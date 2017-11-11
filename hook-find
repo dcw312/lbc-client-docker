@@ -1,3 +1,10 @@
 #!/usr/bin/env bash
-./send-it.sh
-echo "called send-it.sh"
+if [ -e FOUND.txt ]
+then
+   cat FOUND.txt >> FOUND-MSG.txt
+   echo "EOM" >> FOUND-MSG.txt
+   MESSAGE_BODY=$( base64 FOUND-MSG.txt )
+   curl -d "Action=SendMessage&Version=2011-10-01&MessageBody=$MESSAGE_BODY" $LBC_POST_URL
+else
+   echo "no-file"
+fi

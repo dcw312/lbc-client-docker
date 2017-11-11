@@ -5,6 +5,7 @@ COPY funds_h160.blf /home/lbc/funds_h160.blf
 COPY send-it.sh /home/lbc/send-it.sh
 
 COPY entrypoint.sh /home/lbc/entrypoint.sh
+COPY entrypoint.sh /home/lbc/register.sh
 COPY hook-find /home/lbc/hook-find
 
 RUN chown lbc:lbc /home/lbc/funds_h160.blf \
@@ -12,6 +13,8 @@ RUN chown lbc:lbc /home/lbc/funds_h160.blf \
     && chmod +x /home/lbc/send-it.sh \
     && chown lbc:lbc /home/lbc/entrypoint.sh \
     && chmod +x /home/lbc/entrypoint.sh \
+    && chown lbc:lbc /home/lbc/register.sh \
+    && chmod +x /home/lbc/register.sh \
     && chown lbc:lbc /home/lbc/hook-find \
     && chmod +x /home/lbc/hook-find
 
